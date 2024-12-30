@@ -1,0 +1,9 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+post_create:
+  path: /posts
+  controller:
+    App\Infrastructure\Controller\PostController::create
+  methods: [POST]
