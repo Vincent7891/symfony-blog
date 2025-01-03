@@ -3,7 +3,14 @@
 #    controller: App\Controller\DefaultController::index
 
 post_create:
-  path: /posts
+  path: /create-post
   controller:
-    App\Infrastructure\Controller\PostController::create
+    App\Infrastructure\Controller\CreatePostController::create
   methods: [POST]
+
+get-posts:
+  path: /get-posts
+  controller:
+    App\Infrastructure\Controller\GetPostsController::getPosts
+  methods: [GET]
+
