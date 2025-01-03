@@ -27,5 +27,11 @@ class GetPostsHandlerTest extends DatabaseTestCase
 
         $postsWhenDbPopulated = $this->handler->handle();
         $this->assertSame(2, count($postsWhenDbPopulated));
+
+        $this->assertSame('title of post 1', $postsWhenDbPopulated[0]['title']);
+        $this->assertSame('content of post 1', $postsWhenDbPopulated[0]['content']);
+
+        $this->assertSame('title of post 2', $postsWhenDbPopulated[1]['title']);
+        $this->assertSame('content of post 2', $postsWhenDbPopulated[1]['content']);
     }
 }
