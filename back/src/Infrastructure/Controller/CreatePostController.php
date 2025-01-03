@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Controller;
 use App\Application\CreatePost\CreatePostCommand;
 use App\Application\CreatePost\CreatePostHandler;
+use App\Infrastructure\Validator\CreatePost\CreatePostRequestValidator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,17 +13,17 @@ class CreatePostController extends AbstractController
 {
 
     public function __construct(
-        private readonly CreatePostHandler $handler
+        private readonly CreatePostHandler $handler,
+        private readonly CreatePostRequestValidator $validator
     ){}
 
-    public function create(Request $request) :JsonResponse
+    public function create(Request $request):JsonResponse
     {
-        $data = json_decode($request->getContent(), true);
 
-        if(!isset($data["title"]) || !isset($data["content"])){
-            return new JsonResponse(["error" => "Missing required fields"], Response::HTTP_BAD_REQUEST);
+        $data = $this->validator->validate($request);
+        if($data instanceof JsonResponse){
+            return $data;
         }
-
         $command = new CreatePostCommand(
             $data['title'],
             $data['content']
