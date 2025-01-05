@@ -6,9 +6,9 @@ use App\Domain\Model\PostTitle;
 class Post
 {
     public function __construct(
-        private readonly PostTitle     $title,
-        private readonly PostContent   $content,
-        private ?int $id = null,
+        public readonly PostTitle     $title,
+        public readonly PostContent   $content,
+        public ?int $id = null,
     )
     {}
 

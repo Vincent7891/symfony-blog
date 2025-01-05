@@ -7,7 +7,7 @@ use App\Domain\Exception\InvalidPostException;
 class PostContent
 {
     public function __construct(
-        private readonly string $post,
+        public readonly string $post,
     ){
         if (empty($post)) {
             throw new InvalidPostException(

@@ -7,7 +7,7 @@ use App\Domain\Exception\InvalidPostException;
 class PostTitle
 {
     public function __construct(
-        private readonly string $title,
+        public readonly string $title,
     )
     {
         // create seperate method and then call in constructor

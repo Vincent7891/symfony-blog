@@ -26,6 +26,5 @@ class CreatePostHandler
         } catch (InvalidPostException $exception){
             throw new \InvalidArgumentException($exception->getMessage(), Response::HTTP_BAD_REQUEST, $exception);
         }
-
     }
 }

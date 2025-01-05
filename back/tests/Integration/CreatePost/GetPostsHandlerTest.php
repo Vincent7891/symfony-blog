@@ -3,6 +3,7 @@
 namespace App\Tests\Integration\CreatePost;
 
 use App\Application\GetPosts\GetPostsHandler;
+use App\Domain\Exception\InvalidPostException;
 use App\Infrastructure\Query\GetPostsQuery\GetPostsQuery;
 use App\Tests\Integration\DatabaseTestCase;
 
@@ -17,6 +18,9 @@ class GetPostsHandlerTest extends DatabaseTestCase
         $this->handler = new GetPostsHandler($getPostsQuery);
     }
 
+    /**
+     * @throws InvalidPostException
+     */
     public function testsItSuccessfullyGetsPosts(): void
     {
         $postsWhenDbEmpty = $this->handler->handle();
@@ -27,11 +31,10 @@ class GetPostsHandlerTest extends DatabaseTestCase
 
         $postsWhenDbPopulated = $this->handler->handle();
         $this->assertSame(2, count($postsWhenDbPopulated));
+        $this->assertSame('title of post 1', $postsWhenDbPopulated[0]->getTitle());
+        $this->assertSame('content of post 1', $postsWhenDbPopulated[0]->getContent());
 
-        $this->assertSame('title of post 1', $postsWhenDbPopulated[0]['title']);
-        $this->assertSame('content of post 1', $postsWhenDbPopulated[0]['content']);
-
-        $this->assertSame('title of post 2', $postsWhenDbPopulated[1]['title']);
-        $this->assertSame('content of post 2', $postsWhenDbPopulated[1]['content']);
+        $this->assertSame('title of post 2', $postsWhenDbPopulated[1]->getTitle());
+        $this->assertSame('content of post 2', $postsWhenDbPopulated[1]->getContent());
     }
 }

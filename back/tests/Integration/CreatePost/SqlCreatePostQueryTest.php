@@ -4,12 +4,10 @@ namespace App\Tests\Integration\CreatePost;
 
 use App\Application\CreatePost\CreatePostInterface;
 use App\Domain\Entity\Post;
-use App\Domain\Exception\InvalidPostException;
 use App\Domain\Model\PostContent;
 use App\Domain\Model\PostTitle;
 use App\Infrastructure\Query\CreatePostQuery\CreatePostQuery;
 use App\Tests\Integration\DatabaseTestCase;
-use App\Tests\Integration\IntegrationTestCase;
 
 
 class SqlCreatePostQueryTest extends DatabaseTestCase
