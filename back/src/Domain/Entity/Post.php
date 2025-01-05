@@ -3,14 +3,21 @@
 namespace App\Domain\Entity;
 use App\Domain\Model\PostContent;
 use App\Domain\Model\PostTitle;
-class Post
+
+class Post implements \JsonSerializable
 {
     public function __construct(
-        public readonly PostTitle     $title,
-        public readonly PostContent   $content,
+        private readonly PostTitle     $title,
+        private readonly PostContent   $content,
         public ?int $id = null,
     )
     {}
+
+    public function jsonSerialize(): array
+    {
+        return array_filter(get_object_vars($this));
+    }
+
 
     public function getId(): ?int {
         return $this->id;
