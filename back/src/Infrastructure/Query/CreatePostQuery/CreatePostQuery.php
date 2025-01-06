@@ -1,23 +1,26 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Infrastructure\Query\CreatePostQuery;
-use App\Domain\Entity\Post;
+
 use App\Application\CreatePost\CreatePostInterface;
+use App\Domain\Entity\Post;
 use App\Infrastructure\Database\DatabaseConnection;
-use PDO;
 
 class CreatePostQuery implements CreatePostInterface
 {
-    private PDO $pdo;
+    private \PDO $pdo;
+
     public function __construct(DatabaseConnection $databaseConnection)
     {
         $this->pdo = $databaseConnection->getPdo();
     }
 
-    public function create(Post $post) : void
+    public function create(Post $post): void
     {
-        $query = $this->pdo->prepare("INSERT INTO POSTS (
-                   title, content) VALUES (:title, :content)");
+        $query = $this->pdo->prepare('INSERT INTO POSTS (
+                   title, content) VALUES (:title, :content)');
 
         $query->execute([
             'title' => $post->getTitle(),

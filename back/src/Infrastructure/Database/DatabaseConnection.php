@@ -1,31 +1,30 @@
 <?php
 
-namespace App\Infrastructure\Database;
+declare(strict_types=1);
 
-use PDO;
-use PDOException;
+namespace App\Infrastructure\Database;
 
 class DatabaseConnection
 {
-    private PDO $pdo;
+    private \PDO $pdo;
 
     public function __construct(string $host, string $port, string $dbName,
-                                string $user, string $password)
+        string $user, string $password)
     {
         $dsn = "mysql:host=$host;port=$port;dbname=$dbName";
 
         try {
-            $this->pdo = new PDO($dsn, $user, $password, [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            $this->pdo = new \PDO($dsn, $user, $password, [
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
             ]);
-        } catch (PDOException $e) {
-            throw new PDOException($e->getMessage());
+        } catch (\PDOException $e) {
+            throw new \PDOException($e->getMessage());
         }
     }
 
-    public function getPdo(): PDO {
+    public function getPdo(): \PDO
+    {
         return $this->pdo;
     }
-
 }
