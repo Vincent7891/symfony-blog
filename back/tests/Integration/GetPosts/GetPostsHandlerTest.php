@@ -3,7 +3,6 @@
 namespace App\Tests\Integration\GetPosts;
 
 use App\Application\GetPosts\GetPostsHandler;
-use App\Domain\Exception\InvalidPostException;
 use App\Infrastructure\Query\GetPostsQuery\GetPostsQuery;
 use App\Tests\Integration\DatabaseTestCase;
 
@@ -17,8 +16,6 @@ class GetPostsHandlerTest extends DatabaseTestCase
         $getPostsQuery = new GetPostsQuery($this->databaseConnection);
         $this->handler = new GetPostsHandler($getPostsQuery);
     }
-
-
 
     public function testsItSuccessfullyGetsPosts(): void
     {

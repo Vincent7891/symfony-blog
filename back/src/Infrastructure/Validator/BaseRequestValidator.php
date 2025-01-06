@@ -1,13 +1,14 @@
 <?php
 
 declare(strict_types=1);
+
 namespace App\Infrastructure\Validator;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-Abstract class BaseRequestValidator
+abstract class BaseRequestValidator
 {
     abstract protected function getRequiredFields(): array;
 
@@ -18,13 +19,11 @@ Abstract class BaseRequestValidator
             return new JsonResponse(['error' => 'invalid json'], Response::HTTP_BAD_REQUEST);
         }
 
-        $missingFields = array_diff($this->getRequiredFields(), array_keys($data));
+        $missingFields = \array_diff($this->getRequiredFields(), \array_keys($data));
         if (!empty($missingFields)) {
-            return new JsonResponse(['error' => 'missing required fields: ' .implode(',', $missingFields)], Response::HTTP_BAD_REQUEST);
+            return new JsonResponse(['error' => 'missing required fields: '.\implode(',', $missingFields)], Response::HTTP_BAD_REQUEST);
         }
 
         return $data;
     }
-
-
 }
