@@ -9,7 +9,7 @@ class Post implements \JsonSerializable
     public function __construct(
         private readonly PostTitle     $title,
         private readonly PostContent   $content,
-        public ?int $id = null,
+        private ?int $id = null,
     )
     {}
 
