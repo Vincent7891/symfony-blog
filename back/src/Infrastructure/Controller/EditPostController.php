@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 namespace App\Infrastructure\Controller;
 
 use App\Application\EditPost\EditPostCommand;
@@ -29,9 +30,12 @@ class EditPostController extends AbstractController
             $data['title'],
             $data['content'],
         );
-        $this->handler->handle($command);
 
-        return new JsonResponse(['message' => 'Post edited successfully'], Response::HTTP_OK,
-        );
+        try {
+            $this->handler->handle($command);
+            return new JsonResponse(['message' => 'Post edited successfully'], Response::HTTP_OK,);
+        } catch (\InvalidArgumentException $exception) {
+            return new JsonResponse(['message' => $exception->getMessage()], Response::HTTP_BAD_REQUEST,);
+        }
     }
 }

@@ -18,9 +18,8 @@ class GetPostsHandlerTest extends DatabaseTestCase
         $this->handler = new GetPostsHandler($getPostsQuery);
     }
 
-    /**
-     * @throws InvalidPostException
-     */
+
+
     public function testsItSuccessfullyGetsPosts(): void
     {
         $postsWhenDbEmpty = $this->handler->handle();

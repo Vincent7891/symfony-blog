@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
 namespace App\Application\EditPost;
 
-class EditPostCommand
+final class EditPostCommand
 {
     public function __construct(
         public readonly int $id,

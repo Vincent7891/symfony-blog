@@ -1,23 +1,17 @@
 <?php
 
 declare(strict_types=1);
-
 namespace App\Infrastructure\Validator\CreatePost;
 
+use App\Infrastructure\Validator\BaseRequestValidator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CreatePostRequestValidator
+class CreatePostRequestValidator extends BaseRequestValidator
 {
-    public function validate(Request $request): JsonResponse|array
+    protected function getRequiredFields(): array
     {
-        $data = \json_decode($request->getContent(), true);
-        if (!isset($data['title']) || !isset($data['content'])) {
-            return new JsonResponse(['error' => 'Missing required fields'],
-                Response::HTTP_BAD_REQUEST);
-        }
-
-        return $data;
+        return ['title', 'content'];
     }
 }
