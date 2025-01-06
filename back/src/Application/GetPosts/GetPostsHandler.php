@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Application\GetPosts;
 
 use App\Domain\Entity\Post;
@@ -13,12 +15,12 @@ class GetPostsHandler
     {
     }
 
-
     /**
      * @return Post[]
+     *
      * @throws InvalidPostException
      */
-    public function handle() : array
+    public function handle(): array
     {
         $postsArray = $this->getPosts->get();
         $posts = [];
@@ -29,7 +31,7 @@ class GetPostsHandler
                 $post['id'],
             );
         }
+
         return $posts;
     }
-
 }

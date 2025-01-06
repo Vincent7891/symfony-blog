@@ -1,25 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domain\Entity;
+
 use App\Domain\Model\PostContent;
 use App\Domain\Model\PostTitle;
 
 class Post implements \JsonSerializable
 {
     public function __construct(
-        private readonly PostTitle     $title,
-        private readonly PostContent   $content,
+        private readonly PostTitle $title,
+        private readonly PostContent $content,
         private ?int $id = null,
-    )
-    {}
+    ) {
+    }
 
     public function jsonSerialize(): array
     {
-        return array_filter(get_object_vars($this));
+        return \array_filter(\get_object_vars($this));
     }
 
-
-    public function getId(): ?int {
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
@@ -27,6 +30,7 @@ class Post implements \JsonSerializable
     {
         $this->id = $id;
     }
+
     public function getTitle(): string
     {
         return $this->title->getTitle();
