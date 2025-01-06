@@ -3,13 +3,13 @@
 namespace App\Tests\Integration;
 
 use App\Infrastructure\Database\DatabaseConnection;
-use PDO;
 use PHPUnit\Framework\TestCase;
 
 abstract class IntegrationTestCase extends TestCase
 {
-    protected readonly PDO $pdo;
+    protected readonly \PDO $pdo;
     protected readonly DatabaseConnection $databaseConnection;
+
     protected function setUp(): void
     {
         parent::setUp();

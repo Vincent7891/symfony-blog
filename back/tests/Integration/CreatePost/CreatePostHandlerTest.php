@@ -6,7 +6,6 @@ use App\Application\CreatePost\CreatePostCommand;
 use App\Application\CreatePost\CreatePostHandler;
 use App\Infrastructure\Query\CreatePostQuery\CreatePostQuery;
 use App\Tests\Integration\DatabaseTestCase;
-use InvalidArgumentException;
 
 class CreatePostHandlerTest extends DatabaseTestCase
 {
@@ -23,7 +22,7 @@ class CreatePostHandlerTest extends DatabaseTestCase
     {
         $command = new CreatePostCommand(
             'valid title',
-            'valid content for post'
+            'valid content for post',
         );
         $this->handler->handle($command);
         $result = $this->getPostByTitle($command->title);
@@ -33,25 +32,25 @@ class CreatePostHandlerTest extends DatabaseTestCase
 
     public function testItThrowsExceptionForShortTitle(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Title must be between 1 and 255 characters");
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Title must be between 1 and 255 characters');
         $command = new CreatePostCommand('', 'normal content');
         $this->handler->handle($command);
     }
 
     public function testItThrowsExceptionForLongTitle(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Title must be between 1 and 255 characters");
-        $longTitle = str_repeat('a', 256);
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Title must be between 1 and 255 characters');
+        $longTitle = \str_repeat('a', 256);
         $command = new CreatePostCommand($longTitle, 'normal content');
         $this->handler->handle($command);
     }
 
     public function testItThrowsExceptionEmptyContent(): void
     {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage("Content cannot be empty");
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Content cannot be empty');
         $command = new CreatePostCommand(
             'valid title', '');
         $this->handler->handle($command);
