@@ -2,8 +2,10 @@
 
 namespace App\Application\CreatePost;
 use App\Domain\Entity\Post;
+use App\Domain\Exception\InvalidPostException;
 use App\Domain\Model\PostContent;
 use App\Domain\Model\PostTitle;
+use Symfony\Component\HttpFoundation\Response;
 
 class CreatePostHandler
 {
@@ -15,11 +17,14 @@ class CreatePostHandler
 
     public function handle(CreatePostCommand $command) : void
     {
-        $post = new Post(
-            new PostTitle($command->title),
-            new PostContent($command->content),
-        );
-
-        $this->createPost->create($post);
+        try{
+            $post = new Post(
+                new PostTitle($command->title),
+                new PostContent($command->content),
+            );
+            $this->createPost->create($post);
+        } catch (InvalidPostException $exception){
+            throw new \InvalidArgumentException($exception->getMessage(), Response::HTTP_BAD_REQUEST, $exception);
+        }
     }
 }

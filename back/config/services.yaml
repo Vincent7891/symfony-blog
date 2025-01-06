@@ -36,4 +36,9 @@ services:
             $databaseConnection:
                 '@App\Infrastructure\Database\DatabaseConnection'
 
+    App\Infrastructure\Query\GetPostsQuery\GetPostsQuery:
+        arguments:
+            $databaseConnection:
+                '@App\Infrastructure\Database\DatabaseConnection'
+
 

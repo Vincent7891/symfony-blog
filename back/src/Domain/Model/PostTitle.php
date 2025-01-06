@@ -10,7 +10,9 @@ class PostTitle
         private readonly string $title,
     )
     {
-        // create seperate method and then call in constructor
+        $this->validateTitle($title);
+    }
+    private function validateTitle(string $title): void {
         if (empty($title) || strlen($title) > 255 || strlen($title) < 1 ) {
             throw new invalidPostException("Title must be between 1 and 255 characters");
         }

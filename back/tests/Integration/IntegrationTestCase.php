@@ -32,5 +32,4 @@ abstract class IntegrationTestCase extends TestCase
         }
         parent::tearDown();
     }
-
 }
