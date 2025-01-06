@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Validator\CreatePost;
+namespace App\Infrastructure\Validator\EditPost;
 
 use App\Infrastructure\Validator\BaseRequestValidator;
 
-class CreatePostRequestValidator extends BaseRequestValidator
+class EditPostRequestValidator extends BaseRequestValidator
 {
     protected function getRequiredFields(): array
     {
-        return ['title', 'content'];
+        return ['id', 'title', 'content'];
     }
 }

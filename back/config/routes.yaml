@@ -14,3 +14,10 @@ get-posts:
     App\Infrastructure\Controller\GetPostsController::getPosts
   methods: [GET]
 
+edit-post:
+  path: /edit-post
+  controller:
+    App\Infrastructure\Controller\EditPostController::editPost
+  methods: [PATCH]
+
+
