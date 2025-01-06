@@ -31,6 +31,6 @@ abstract class DatabaseTestCase extends IntegrationTestCase
     protected function insertPost(int $id, string $title, string $content): void
     {
         $query = $this->pdo->prepare('INSERT INTO POSTS (id, title, content) VALUES (:id, :title, :content)');
-        $query->execute(['id'=>$id, 'title' => $title, 'content' => $content]);
+        $query->execute(['id' => $id, 'title' => $title, 'content' => $content]);
     }
 }

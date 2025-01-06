@@ -10,21 +10,18 @@ use Symfony\Component\HttpFoundation\Response;
 class EditPostHandler
 {
     public function __construct(
-        private readonly EditPostInterface $editPost
-    )
-    {}
-
+        private readonly EditPostInterface $editPost,
+    ) {
+    }
 
     public function handle(EditPostCommand $command): void
     {
-        try{
+        try {
             $title = new PostTitle($command->title);
             $content = new PostContent($command->content);
             $this->editPost->edit($command->id, $title, $content);
-        } catch (InvalidPostException $exception){
+        } catch (InvalidPostException $exception) {
             throw new \InvalidArgumentException($exception->getMessage(), Response::HTTP_BAD_REQUEST, $exception);
         }
-
     }
-
 }

@@ -14,25 +14,24 @@ class EditPostController extends AbstractController
 {
     public function __construct(
         private readonly EditPostHandler $handler,
-        private readonly EditPostRequestValidator $validator
-    )
-    {}
+        private readonly EditPostRequestValidator $validator,
+    ) {
+    }
 
-    public function editPost(Request $request) : JsonResponse
+    public function editPost(Request $request): JsonResponse
     {
-
         $data = $this->validator->validate($request);
-        if($data instanceof JsonResponse){
+        if ($data instanceof JsonResponse) {
             return $data;
         }
         $command = new EditPostCommand(
             $data['id'],
             $data['title'],
-            $data['content']
+            $data['content'],
         );
         $this->handler->handle($command);
-        return new JsonResponse(['message' => 'Post edited successfully'], Response::HTTP_OK
+
+        return new JsonResponse(['message' => 'Post edited successfully'], Response::HTTP_OK,
         );
     }
-
 }

@@ -9,9 +9,9 @@ use App\Tests\Integration\DatabaseTestCase;
 
 class GetPostsHandlerTest extends DatabaseTestCase
 {
-    private getPostsHandler $handler;
+    private GetPostsHandler $handler;
 
-    protected function setUp():void
+    protected function setUp(): void
     {
         parent::setUp();
         $getPostsQuery = new GetPostsQuery($this->databaseConnection);
@@ -24,13 +24,13 @@ class GetPostsHandlerTest extends DatabaseTestCase
     public function testsItSuccessfullyGetsPosts(): void
     {
         $postsWhenDbEmpty = $this->handler->handle();
-        $this->assertSame(0, count($postsWhenDbEmpty));
+        $this->assertSame(0, \count($postsWhenDbEmpty));
 
         $this->insertPost(1, 'title of post 1', 'content of post 1');
         $this->insertPost(2, 'title of post 2', 'content of post 2');
 
         $postsWhenDbPopulated = $this->handler->handle();
-        $this->assertSame(2, count($postsWhenDbPopulated));
+        $this->assertSame(2, \count($postsWhenDbPopulated));
         $this->assertSame('title of post 1', $postsWhenDbPopulated[0]->getTitle());
         $this->assertSame('content of post 1', $postsWhenDbPopulated[0]->getContent());
 

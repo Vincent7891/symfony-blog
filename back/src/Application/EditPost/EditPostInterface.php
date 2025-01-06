@@ -7,5 +7,5 @@ use App\Domain\Model\PostTitle;
 
 interface EditPostInterface
 {
-    public function edit(int $id, postTitle $title, postContent $content) : void;
+    public function edit(int $id, PostTitle $title, PostContent $content): void;
 }

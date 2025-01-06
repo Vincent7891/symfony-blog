@@ -10,11 +10,12 @@ class EditPostRequestValidator
 {
     public function validate(Request $request): JsonResponse|array
     {
-        $data = json_decode($request->getContent(), true);
-        if(!isset($data['id']) || !isset($data["title"]) || !isset($data["content"])){
-            return new JsonResponse(["error" => "Missing required fields"],
+        $data = \json_decode($request->getContent(), true);
+        if (!isset($data['id']) || !isset($data['title']) || !isset($data['content'])) {
+            return new JsonResponse(['error' => 'Missing required fields'],
                 Response::HTTP_BAD_REQUEST);
         }
+
         return $data;
     }
 }
