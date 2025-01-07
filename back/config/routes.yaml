@@ -20,4 +20,11 @@ edit-post:
     App\Infrastructure\Controller\EditPostController::editPost
   methods: [PATCH]
 
+delete-post:
+  path: /delete-post
+  controller:
+    App\Infrastructure\Controller\EditPostController::deletePost
+  methods: [DELETE]
+
+
 
