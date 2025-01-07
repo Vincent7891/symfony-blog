@@ -23,8 +23,7 @@ edit-post:
 delete-post:
   path: /delete-post
   controller:
-    App\Infrastructure\Controller\EditPostController::deletePost
+    App\Infrastructure\Controller\DeletePostController::deletePost
   methods: [DELETE]
-
 
 
