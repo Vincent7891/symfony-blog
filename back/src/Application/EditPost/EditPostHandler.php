@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Application\EditPost;
 
 use App\Domain\Exception\InvalidPostException;
-use App\Domain\Model\PostContent;
-use App\Domain\Model\PostTitle;
+use App\Domain\ValueObject\PostContent;
+use App\Domain\ValueObject\PostTitle;
 use Symfony\Component\HttpFoundation\Response;
 
 class EditPostHandler

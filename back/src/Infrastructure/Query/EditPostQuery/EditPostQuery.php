@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Infrastructure\Query\EditPostQuery;
 
 use App\Application\EditPost\EditPostInterface;
-use App\Domain\Model\PostContent;
-use App\Domain\Model\PostTitle;
+use App\Domain\ValueObject\PostContent;
+use App\Domain\ValueObject\PostTitle;
 use App\Infrastructure\Database\DatabaseConnection;
 
 class EditPostQuery implements EditPostInterface
