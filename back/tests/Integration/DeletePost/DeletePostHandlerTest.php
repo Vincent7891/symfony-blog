@@ -20,8 +20,8 @@ class DeletePostHandlerTest extends DatabaseTestCase
 
     public function testItDeletesPost(): void
     {
-        $this->insertPost('1', 'title of post', 'content of the post');
-        $deletePostCommand = new DeletePostCommand('1');
+        $this->insertPost(1, 'title of post', 'content of the post');
+        $deletePostCommand = new DeletePostCommand(1);
         $this->handler->handle($deletePostCommand);
         $deletedPost = $this->getPostById(1);
         $this->assertFalse($deletedPost);
