@@ -19,7 +19,12 @@ class DeletePostHandler
         if (0 == $command->id) {
             throw new \InvalidArgumentException('Id is required');
         }
-        $this->getPostByIdQuery->get($command->id);
+        $this->checkPostExists($command->id);
         $this->deletePost->delete($command->id);
+    }
+
+    private function checkPostExists(int $id): void
+    {
+        $this->getPostByIdQuery->get($id);
     }
 }

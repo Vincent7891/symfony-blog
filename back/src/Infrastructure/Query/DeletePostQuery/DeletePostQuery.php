@@ -21,9 +21,5 @@ class DeletePostQuery implements DeletePostInterface
     {
         $query = $this->pdo->prepare('DELETE FROM POSTS WHERE id = :id');
         $query->execute(['id' => $id]);
-
-        if (0 === $query->rowCount()) {
-            throw new PostNotFoundException('The post with id '.$id.' was not found.');
-        }
     }
 }

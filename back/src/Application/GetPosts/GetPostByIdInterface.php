@@ -6,5 +6,5 @@ use App\Domain\Entity\Post;
 
 interface GetPostByIdInterface
 {
-    public function get(int $id): Post;
+    public function get(int $id): array;
 }

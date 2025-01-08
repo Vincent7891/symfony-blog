@@ -18,7 +18,10 @@ class GetPostByIdQuery implements GetPostByIdInterface
         $this->pdo = $databaseConnection->getPdo();
     }
 
-    public function get(int $id): Post
+    /**
+     * @throws PostNotFoundException
+     */
+    public function get(int $id): array
     {
         $query = $this->pdo->prepare('SELECT * FROM POSTS WHERE id = :id');
         $query->execute(['id' => $id]);
@@ -27,10 +30,6 @@ class GetPostByIdQuery implements GetPostByIdInterface
             throw new PostNotFoundException('the post with id '.$id.' was not found');
         }
 
-        return new Post(
-            new PostTitle($post['title']),
-            new PostContent($post['content']),
-            $post['id'],
-        );
+        return $post;
     }
 }
