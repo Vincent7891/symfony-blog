@@ -30,6 +30,6 @@ class DeletePostHandlerTest extends DatabaseTestCase
 
     public function assertPostDoesNotExist(int $id): bool
     {
-        return $this->getPostById($id) === false;
+        return false === $this->getPostById($id);
     }
 }

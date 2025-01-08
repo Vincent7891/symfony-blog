@@ -7,7 +7,6 @@ namespace App\Infrastructure\Query\DeletePostQuery;
 use App\Application\DeletePost\DeletePostInterface;
 use App\Domain\Exception\PostNotFoundException;
 use App\Infrastructure\Database\DatabaseConnection;
-use http\Exception\InvalidArgumentException;
 
 class DeletePostQuery implements DeletePostInterface
 {
@@ -23,8 +22,8 @@ class DeletePostQuery implements DeletePostInterface
         $query = $this->pdo->prepare('DELETE FROM POSTS WHERE id = :id');
         $query->execute(['id' => $id]);
 
-        if($query->rowCount() === 0) {
-            throw new PostNotFoundException('The post with id ' . $id . ' was not found.');
+        if (0 === $query->rowCount()) {
+            throw new PostNotFoundException('The post with id '.$id.' was not found.');
         }
     }
 }

@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace App\Application\DeletePost;
 
-
 use App\Application\GetPosts\GetPostByIdInterface;
 
 class DeletePostHandler
 {
     public function __construct(
         private readonly DeletePostInterface $deletePost,
-        private readonly GetPostByIdInterface $getPostByIdQuery
-    )
-    {
+        private readonly GetPostByIdInterface $getPostByIdQuery,
+    ) {
     }
 
     public function handle(DeletePostCommand $command): void
