@@ -21,14 +21,13 @@ class DeletePostController extends AbstractController
     public function deletePost(Request $request): JsonResponse
     {
         $data = \json_decode($request->getContent(), true);
-        $command = new DeletePostCommand($data['id']);
         try {
+            $command = new DeletePostCommand($data['id'] ?? 0);
             $this->handler->handle($command);
 
             return new JsonResponse(['message' => 'post deleted successfully'], Response::HTTP_NO_CONTENT);
-        } catch (\Exception) {
-            return new JsonResponse(['error' => 'An unexpected error has occurred'], Response::HTTP_INTERNAL_SERVER_ERROR,
-            );
+        } catch (\InvalidArgumentException $exception) {
+            return new JsonResponse(['message' => $exception->getMessage()], Response::HTTP_BAD_REQUEST);
         }
     }
 }
