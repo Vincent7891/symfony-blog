@@ -6,6 +6,7 @@ namespace App\Infrastructure\Controller;
 
 use App\Application\DeletePost\DeletePostCommand;
 use App\Application\DeletePost\DeletePostHandler;
+use App\Domain\Exception\PostNotFoundException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,6 +29,8 @@ class DeletePostController extends AbstractController
             return new JsonResponse(['message' => 'post deleted successfully'], Response::HTTP_NO_CONTENT);
         } catch (\InvalidArgumentException $exception) {
             return new JsonResponse(['message' => $exception->getMessage()], Response::HTTP_BAD_REQUEST);
+        } catch (PostNotFoundException $exception) {
+            return new JsonResponse(['message' => $exception->getMessage()], Response::HTTP_NOT_FOUND);
         }
     }
 }
