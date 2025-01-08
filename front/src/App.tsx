@@ -1,5 +1,7 @@
-import HomePage from "./components/Pages/PostsPage.tsx";
 import {Route, Routes} from "react-router-dom";
+import CreatePostPage from "./components/Pages/CreatePostPage.tsx";
+import HomePage from "./components/Pages/HomePage.tsx";
+import PostsPage from "./components/Pages/PostsPage.tsx";
 
 function App() {
 
@@ -12,6 +14,9 @@ function App() {
      </header>
         <Routes>
             <Route path = '/' element={<HomePage/>}/>
+            <Route path = '/create' element={<CreatePostPage/>}/>
+            <Route path = '/posts' element={<PostsPage/>}/>
+
         </Routes>
     </>
   )
