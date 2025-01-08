@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 namespace App\Application\DeletePost;
 
+
+use App\Application\GetPosts\GetPostByIdInterface;
+
 class DeletePostHandler
 {
-    public function __construct(private readonly DeletePostInterface $deletePost)
+    public function __construct(
+        private readonly DeletePostInterface $deletePost,
+        private readonly GetPostByIdInterface $getPostByIdQuery
+    )
     {
     }
 
@@ -15,6 +21,7 @@ class DeletePostHandler
         if (0 == $command->id) {
             throw new \InvalidArgumentException('Id is required');
         }
+        $this->getPostByIdQuery->get($command->id);
         $this->deletePost->delete($command->id);
     }
 }

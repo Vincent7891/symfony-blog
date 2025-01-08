@@ -5,6 +5,7 @@ namespace App\Tests\Integration\DeletePost;
 use App\Application\DeletePost\DeletePostCommand;
 use App\Application\DeletePost\DeletePostHandler;
 use App\Infrastructure\Query\DeletePostQuery\DeletePostQuery;
+use App\Infrastructure\Query\GetPostQueries\GetPostByIdQuery;
 use App\Tests\Integration\DatabaseTestCase;
 
 class DeletePostHandlerTest extends DatabaseTestCase
@@ -15,7 +16,8 @@ class DeletePostHandlerTest extends DatabaseTestCase
     {
         parent::setup();
         $deletePostQuery = new DeletePostQuery($this->databaseConnection);
-        $this->handler = new DeletePostHandler($deletePostQuery);
+        $getPostByIdQuery = new GetPostByIdQuery($this->databaseConnection);
+        $this->handler = new DeletePostHandler($deletePostQuery, $getPostByIdQuery);
     }
 
     public function testItDeletesPost(): void
@@ -26,12 +28,8 @@ class DeletePostHandlerTest extends DatabaseTestCase
         $this->assertTrue($this->assertPostDoesNotExist(1));
     }
 
-    public function assertPostDoesNotExist(int $id): bool | array
+    public function assertPostDoesNotExist(int $id): bool
     {
-        $post = $this->getPostById(1);
-        if($post === false){
-            return true;
-        }
-        return false;
+        return $this->getPostById($id) === false;
     }
 }

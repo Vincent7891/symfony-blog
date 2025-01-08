@@ -31,14 +31,4 @@ services:
             $user: '%env(DB_USER)%'
             $password: '%env(DB_PASSWORD)%'
 
-    App\Infrastructure\Query\CreatePostQuery\CreatePostQuery:
-        arguments:
-            $databaseConnection:
-                '@App\Infrastructure\Database\DatabaseConnection'
-
-    App\Infrastructure\Query\GetPostsQuery\GetPostsQuery:
-        arguments:
-            $databaseConnection:
-                '@App\Infrastructure\Database\DatabaseConnection'
-
 

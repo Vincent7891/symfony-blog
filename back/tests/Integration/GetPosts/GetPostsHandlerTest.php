@@ -3,7 +3,7 @@
 namespace App\Tests\Integration\GetPosts;
 
 use App\Application\GetPosts\GetPostsHandler;
-use App\Infrastructure\Query\GetPostsQuery\GetPostsQuery;
+use App\Infrastructure\Query\GetPostQueries\GetPostsQuery;
 use App\Tests\Integration\DatabaseTestCase;
 
 class GetPostsHandlerTest extends DatabaseTestCase
