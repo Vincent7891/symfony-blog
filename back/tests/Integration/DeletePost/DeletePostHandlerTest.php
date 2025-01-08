@@ -23,7 +23,15 @@ class DeletePostHandlerTest extends DatabaseTestCase
         $this->insertPost(1, 'title of post', 'content of the post');
         $deletePostCommand = new DeletePostCommand(1);
         $this->handler->handle($deletePostCommand);
-        $deletedPost = $this->getPostById(1);
-        $this->assertFalse($deletedPost);
+        $this->assertTrue($this->assertPostDoesNotExist(1));
+    }
+
+    public function assertPostDoesNotExist(int $id): bool | array
+    {
+        $post = $this->getPostById(1);
+        if($post === false){
+            return true;
+        }
+        return false;
     }
 }
