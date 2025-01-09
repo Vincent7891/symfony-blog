@@ -34,7 +34,6 @@ class EditPostController extends AbstractController
 
         try {
             $this->handler->handle($command);
-
             return new JsonResponse(['message' => 'Post edited successfully'], Response::HTTP_OK);
         } catch (\InvalidArgumentException $exception) {
             return new JsonResponse(['message' => $exception->getMessage()], Response::HTTP_BAD_REQUEST);
