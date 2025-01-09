@@ -51,10 +51,8 @@ const PostsPage = () => {
               <Link to={`/edit/${post.id}`} className="text-blue-500">
                 Edit
               </Link>
-              {/*disabled until merge of delete later*/}
               <button
-                className="bg-gray-400 rounded-2xl px-4 py-2 hover:cursor-not-allowed"
-                disabled={true}
+                className="bg-gray-400 rounded-2xl px-4 py-2"
                 onClick={() => post.id && deleteMutation.mutate(post.id)}
               >
                 Delete
