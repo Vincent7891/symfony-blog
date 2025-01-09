@@ -20,8 +20,8 @@ const EditPostPage = () => {
   const editMutation = useMutation({
     mutationFn: (post: Post) => editPost(post),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['posts'] })
-      navigate('/posts')
+      queryClient.invalidateQueries({ queryKey: ['posts'] }).then(() =>       navigate('/posts')
+      )
     },
   })
 
@@ -32,13 +32,11 @@ const EditPostPage = () => {
 
   const handleEdit = (formData: Post) => {
     if (postToEdit.id) {
-      const payload = {
+      editMutation.mutate({
         id: formData.id,
         title: formData.title,
         content: formData.content,
-      }
-      console.log(payload)
-      editMutation.mutate(payload)
+      })
     }
   }
 
