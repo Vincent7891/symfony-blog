@@ -18,7 +18,11 @@ class Post implements \JsonSerializable
 
     public function jsonSerialize(): array
     {
-        return \array_filter(\get_object_vars($this));
+        return [
+            'id' => $this->getId(),
+            'title' => $this->getTitle(),
+            'content' => $this->getContent(),
+        ];
     }
 
     public function getId(): ?int
