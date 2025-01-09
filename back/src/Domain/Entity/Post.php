@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Domain\Entity;
 
-use App\Domain\Model\PostContent;
-use App\Domain\Model\PostTitle;
+use App\Domain\ValueObject\PostContent;
+use App\Domain\ValueObject\PostTitle;
 
 class Post implements \JsonSerializable
 {

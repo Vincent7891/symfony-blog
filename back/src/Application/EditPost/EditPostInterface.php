@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\EditPost;
 
-use App\Domain\Model\PostContent;
-use App\Domain\Model\PostTitle;
+use App\Domain\ValueObject\PostContent;
+use App\Domain\ValueObject\PostTitle;
 
 interface EditPostInterface
 {

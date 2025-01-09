@@ -6,8 +6,8 @@ namespace App\Application\GetPosts;
 
 use App\Domain\Entity\Post;
 use App\Domain\Exception\InvalidPostException;
-use App\Domain\Model\PostContent;
-use App\Domain\Model\PostTitle;
+use App\Domain\ValueObject\PostContent;
+use App\Domain\ValueObject\PostTitle;
 
 class GetPostsHandler
 {

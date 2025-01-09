@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Query\GetPostsQuery;
+namespace App\Infrastructure\Query\GetPostQueries;
 
 use App\Application\GetPosts\GetPostsInterface;
 use App\Infrastructure\Database\DatabaseConnection;

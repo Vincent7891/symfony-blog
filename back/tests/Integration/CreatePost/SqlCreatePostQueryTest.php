@@ -4,8 +4,8 @@ namespace App\Tests\Integration\CreatePost;
 
 use App\Application\CreatePost\CreatePostInterface;
 use App\Domain\Entity\Post;
-use App\Domain\Model\PostContent;
-use App\Domain\Model\PostTitle;
+use App\Domain\ValueObject\PostContent;
+use App\Domain\ValueObject\PostTitle;
 use App\Infrastructure\Query\CreatePostQuery\CreatePostQuery;
 use App\Tests\Integration\DatabaseTestCase;
 
