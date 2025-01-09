@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Infrastructure\Query\DeletePostQuery;
 
 use App\Application\DeletePost\DeletePostInterface;
-use App\Domain\Exception\PostNotFoundException;
 use App\Infrastructure\Database\DatabaseConnection;
 
 class DeletePostQuery implements DeletePostInterface

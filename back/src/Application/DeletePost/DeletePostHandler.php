@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Application\DeletePost;
 
 use App\Application\GetPosts\GetPostByIdInterface;
+use App\Domain\Exception\PostNotFoundException;
 
 class DeletePostHandler
 {
@@ -14,17 +15,30 @@ class DeletePostHandler
     ) {
     }
 
+    /**
+     * @throws PostNotFoundException
+     */
     public function handle(DeletePostCommand $command): void
     {
         if (0 == $command->id) {
             throw new \InvalidArgumentException('Id is required');
         }
-        $this->checkPostExists($command->id);
+
+        if (!$this->doesPostExist($command->id)) {
+            throw new PostNotFoundException("The post with id {$command->id} does not exist");
+        }
+
         $this->deletePost->delete($command->id);
     }
 
-    private function checkPostExists(int $id): void
+    private function doesPostExist(int $id): bool
     {
-        $this->getPostByIdQuery->get($id);
+        try {
+            $this->getPostByIdQuery->get($id);
+
+            return true;
+        } catch (PostNotFoundException $exception) {
+            return false;
+        }
     }
 }

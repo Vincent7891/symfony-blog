@@ -3,10 +3,7 @@
 namespace App\Infrastructure\Query\GetPostQueries;
 
 use App\Application\GetPosts\GetPostByIdInterface;
-use App\Domain\Entity\Post;
 use App\Domain\Exception\PostNotFoundException;
-use App\Domain\ValueObject\PostContent;
-use App\Domain\ValueObject\PostTitle;
 use App\Infrastructure\Database\DatabaseConnection;
 
 class GetPostByIdQuery implements GetPostByIdInterface
