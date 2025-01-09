@@ -23,7 +23,7 @@ class DeletePostController extends AbstractController
     {
         $data = \json_decode($request->getContent(), true);
         try {
-            $command = new DeletePostCommand($data['id'] ?? 0);
+            $command = new DeletePostCommand($data['id'] ?? null);
             $this->handler->handle($command);
 
             return new JsonResponse(['message' => 'post deleted successfully'], Response::HTTP_NO_CONTENT);

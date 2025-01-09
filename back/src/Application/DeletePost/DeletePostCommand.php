@@ -6,7 +6,7 @@ namespace App\Application\DeletePost;
 
 final class DeletePostCommand
 {
-    public function __construct(public readonly int $id)
+    public function __construct(public readonly ?int $id)
     {
     }
 }

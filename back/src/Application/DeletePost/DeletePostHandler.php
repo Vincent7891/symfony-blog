@@ -20,7 +20,7 @@ class DeletePostHandler
      */
     public function handle(DeletePostCommand $command): void
     {
-        if (0 == $command->id) {
+        if (null === $command->id) {
             throw new \InvalidArgumentException('Id is required');
         }
 
